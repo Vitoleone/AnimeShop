@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Logom.Data
+namespace AnimeShop.Data
 {
     public class ApplicationDbContext : IdentityDbContext
     {

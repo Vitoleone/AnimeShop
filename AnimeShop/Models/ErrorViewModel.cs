@@ -1,6 +1,6 @@
 using System;
 
-namespace Logom.Models
+namespace AnimeShop.Models
 {
     public class ErrorViewModel
     {

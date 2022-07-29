@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore.Migrations;
 using System;
 
-namespace Logom.Data.Migrations
+namespace AnimeShop.Data.Migrations
 {
     public partial class CreateIdentitySchema : Migration
     {

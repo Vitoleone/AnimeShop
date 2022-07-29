@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32630.192
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logom", "Logom\Logom.csproj", "{2439FFAE-D44B-4CD5-9090-4D9ED37DC4DE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnimeShop", "AnimeShop\AnimeShop.csproj", "{C68FA452-9CC0-4F60-AFD9-19B76037D0A2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{2439FFAE-D44B-4CD5-9090-4D9ED37DC4DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2439FFAE-D44B-4CD5-9090-4D9ED37DC4DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2439FFAE-D44B-4CD5-9090-4D9ED37DC4DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2439FFAE-D44B-4CD5-9090-4D9ED37DC4DE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C68FA452-9CC0-4F60-AFD9-19B76037D0A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C68FA452-9CC0-4F60-AFD9-19B76037D0A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C68FA452-9CC0-4F60-AFD9-19B76037D0A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C68FA452-9CC0-4F60-AFD9-19B76037D0A2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {1B7F1002-F47F-4FD0-9F16-F2243F18A39A}
+		SolutionGuid = {BC85BE63-7044-417B-9796-ABE46CF3ABAB}
 	EndGlobalSection
 EndGlobal

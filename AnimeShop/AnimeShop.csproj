@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
-    <UserSecretsId>aspnet-Logom-2D4A33B3-BF21-46C8-B0FC-24406912BD81</UserSecretsId>
+    <UserSecretsId>aspnet-AnimeShop-50F285C7-FF2C-455E-8956-61AA2BF0043A</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
