@@ -10,23 +10,22 @@ using AnimeShop.Models;
 
 namespace AnimeShop.Controllers
 {
-    public class UrunController : Controller
+    public class KategoriController : Controller
     {
         private readonly ApplicationDbContext _context;
 
-        public UrunController(ApplicationDbContext context)
+        public KategoriController(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        // GET: Urun
+        // GET: Kategori
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Urun.Include(u => u.Kategori);
-            return View(await applicationDbContext.ToListAsync());
+            return View(await _context.Kategori.ToListAsync());
         }
 
-        // GET: Urun/Details/5
+        // GET: Kategori/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -34,42 +33,39 @@ namespace AnimeShop.Controllers
                 return NotFound();
             }
 
-            var urun = await _context.Urun
-                .Include(u => u.Kategori)
+            var kategori = await _context.Kategori
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (urun == null)
+            if (kategori == null)
             {
                 return NotFound();
             }
 
-            return View(urun);
+            return View(kategori);
         }
 
-        // GET: Urun/Create
+        // GET: Kategori/Create
         public IActionResult Create()
         {
-            ViewData["KategoriId"] = new SelectList(_context.Kategori, "Id", "Ad");
             return View();
         }
 
-        // POST: Urun/Create
+        // POST: Kategori/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Ad,Fiyat,Miktar,Aciklama,UretimYeri,KategoriId")] Urun urun)
+        public async Task<IActionResult> Create([Bind("Id,Ad")] Kategori kategori)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(urun);
+                _context.Add(kategori);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["KategoriId"] = new SelectList(_context.Kategori, "Id", "Id", urun.KategoriId);
-            return View(urun);
+            return View(kategori);
         }
 
-        // GET: Urun/Edit/5
+        // GET: Kategori/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -77,23 +73,22 @@ namespace AnimeShop.Controllers
                 return NotFound();
             }
 
-            var urun = await _context.Urun.FindAsync(id);
-            if (urun == null)
+            var kategori = await _context.Kategori.FindAsync(id);
+            if (kategori == null)
             {
                 return NotFound();
             }
-            ViewData["KategoriId"] = new SelectList(_context.Kategori, "Id", "Id", urun.KategoriId);
-            return View(urun);
+            return View(kategori);
         }
 
-        // POST: Urun/Edit/5
+        // POST: Kategori/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Ad,Fiyat,Miktar,Aciklama,UretimYeri,KategoriId")] Urun urun)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Ad")] Kategori kategori)
         {
-            if (id != urun.Id)
+            if (id != kategori.Id)
             {
                 return NotFound();
             }
@@ -102,12 +97,12 @@ namespace AnimeShop.Controllers
             {
                 try
                 {
-                    _context.Update(urun);
+                    _context.Update(kategori);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!UrunExists(urun.Id))
+                    if (!KategoriExists(kategori.Id))
                     {
                         return NotFound();
                     }
@@ -118,11 +113,10 @@ namespace AnimeShop.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["KategoriId"] = new SelectList(_context.Kategori, "Id", "Id", urun.KategoriId);
-            return View(urun);
+            return View(kategori);
         }
 
-        // GET: Urun/Delete/5
+        // GET: Kategori/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -130,31 +124,30 @@ namespace AnimeShop.Controllers
                 return NotFound();
             }
 
-            var urun = await _context.Urun
-                .Include(u => u.Kategori)
+            var kategori = await _context.Kategori
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (urun == null)
+            if (kategori == null)
             {
                 return NotFound();
             }
 
-            return View(urun);
+            return View(kategori);
         }
 
-        // POST: Urun/Delete/5
+        // POST: Kategori/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var urun = await _context.Urun.FindAsync(id);
-            _context.Urun.Remove(urun);
+            var kategori = await _context.Kategori.FindAsync(id);
+            _context.Kategori.Remove(kategori);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool UrunExists(int id)
+        private bool KategoriExists(int id)
         {
-            return _context.Urun.Any(e => e.Id == id);
+            return _context.Kategori.Any(e => e.Id == id);
         }
     }
 }
