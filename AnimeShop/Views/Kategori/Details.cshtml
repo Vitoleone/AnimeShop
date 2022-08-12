@@ -1,22 +1,17 @@
 ﻿@model AnimeShop.Models.Kategori
-
+@using AnimeShop.Components
 @{
     ViewData["Title"] = "Details";
 }
 
 <h1>Details</h1>
-
-<div>
-    <h4>Kategori</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Ad)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Ad)
-        </dd>
-    </dl>
+<div class="row">
+    <div class="col-4">
+        @Html.DisplayFor(model => model.Ad)
+    </div>
+    <div class="col-8">
+        @await Component.InvokeAsync("KategoriUrun", new {id = Model.Id}); @*//view component içerisine id alıyordu o id yi burada veriyoruz.*@
+    </div>
 </div>
 <div>
     <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
