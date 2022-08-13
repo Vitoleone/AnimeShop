@@ -68,7 +68,7 @@ namespace AnimeShop.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["SiparisId"] = new SelectList(_context.Siparis, "Id", "Id", siparisDetay.SiparisId);
-            ViewData["UrunId"] = new SelectList(_context.Urun, "Id", "Id", siparisDetay.UrunId);
+            ViewData["UrunId"] = new SelectList(_context.Urun, "Id", "Ad", siparisDetay.UrunId);
             return View(siparisDetay);
         }
 
@@ -86,7 +86,7 @@ namespace AnimeShop.Controllers
                 return NotFound();
             }
             ViewData["SiparisId"] = new SelectList(_context.Siparis, "Id", "Id", siparisDetay.SiparisId);
-            ViewData["UrunId"] = new SelectList(_context.Urun, "Id", "Id", siparisDetay.UrunId);
+            ViewData["UrunId"] = new SelectList(_context.Urun, "Id", "Ad", siparisDetay.UrunId);
             return View(siparisDetay);
         }
 
@@ -123,7 +123,7 @@ namespace AnimeShop.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["SiparisId"] = new SelectList(_context.Siparis, "Id", "Id", siparisDetay.SiparisId);
-            ViewData["UrunId"] = new SelectList(_context.Urun, "Id", "Id", siparisDetay.UrunId);
+            ViewData["UrunId"] = new SelectList(_context.Urun, "Id", "Ad", siparisDetay.UrunId);
             return View(siparisDetay);
         }
 

@@ -65,7 +65,7 @@ namespace AnimeShop.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["MusteriId"] = new SelectList(_context.Set<ApplicationUser>(), "Id", "Id", siparis.MusteriId);
+            ViewData["MusteriId"] = new SelectList(_context.Set<ApplicationUser>(), "Id", "Ad", siparis.MusteriId);
             return View(siparis);
         }
 
@@ -82,7 +82,7 @@ namespace AnimeShop.Controllers
             {
                 return NotFound();
             }
-            ViewData["MusteriId"] = new SelectList(_context.Set<ApplicationUser>(), "Id", "Id", siparis.MusteriId);
+            ViewData["MusteriId"] = new SelectList(_context.Set<ApplicationUser>(), "Id", "Ad", siparis.MusteriId);
             return View(siparis);
         }
 
@@ -118,7 +118,7 @@ namespace AnimeShop.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["MusteriId"] = new SelectList(_context.Set<ApplicationUser>(), "Id", "Id", siparis.MusteriId);
+            ViewData["MusteriId"] = new SelectList(_context.Set<ApplicationUser>(), "Id", "Ad", siparis.MusteriId);
             return View(siparis);
         }
 

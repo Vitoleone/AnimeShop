@@ -65,7 +65,7 @@ namespace AnimeShop.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["UrunId"] = new SelectList(_context.Urun, "Id", "Id", indirimliUrunler.UrunId);
+            ViewData["UrunId"] = new SelectList(_context.Urun, "Id", "Ad", indirimliUrunler.UrunId);
             return View(indirimliUrunler);
         }
 
@@ -82,7 +82,7 @@ namespace AnimeShop.Controllers
             {
                 return NotFound();
             }
-            ViewData["UrunId"] = new SelectList(_context.Urun, "Id", "Id", indirimliUrunler.UrunId);
+            ViewData["UrunId"] = new SelectList(_context.Urun, "Id", "Ad", indirimliUrunler.UrunId);
             return View(indirimliUrunler);
         }
 
@@ -118,7 +118,7 @@ namespace AnimeShop.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["UrunId"] = new SelectList(_context.Urun, "Id", "Id", indirimliUrunler.UrunId);
+            ViewData["UrunId"] = new SelectList(_context.Urun, "Id", "Ad", indirimliUrunler.UrunId);
             return View(indirimliUrunler);
         }
 
