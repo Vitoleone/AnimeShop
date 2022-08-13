@@ -48,7 +48,7 @@ namespace AnimeShop.Controllers
         // GET: IndirimliUrunler/Create
         public IActionResult Create()
         {
-            ViewData["UrunId"] = new SelectList(_context.Urun, "Id", "Id");
+            ViewData["UrunId"] = new SelectList(_context.Urun, "Id", "Ad");
             return View();
         }
 

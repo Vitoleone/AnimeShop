@@ -48,7 +48,7 @@ namespace AnimeShop.Controllers
         // GET: Siparis/Create
         public IActionResult Create()
         {
-            ViewData["MusteriId"] = new SelectList(_context.Set<ApplicationUser>(), "Id", "Id");
+            ViewData["MusteriId"] = new SelectList(_context.Set<ApplicationUser>(), "Id", "Ad");
             return View();
         }
 

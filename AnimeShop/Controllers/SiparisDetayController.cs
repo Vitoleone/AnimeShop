@@ -50,7 +50,7 @@ namespace AnimeShop.Controllers
         public IActionResult Create()
         {
             ViewData["SiparisId"] = new SelectList(_context.Siparis, "Id", "Id");
-            ViewData["UrunId"] = new SelectList(_context.Urun, "Id", "Id");
+            ViewData["UrunId"] = new SelectList(_context.Urun, "Id", "Ad");
             return View();
         }
 
