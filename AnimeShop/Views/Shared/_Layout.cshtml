@@ -22,11 +22,25 @@
                             <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Ürünler</a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <li><a class="dropdown-item" href="#!">Tüm Ürünler</a></li>
-                                <li><hr class="dropdown-divider" /></li>
                                 <li><a class="dropdown-item" href="#!">Figür</a></li>
                                 <li><a class="dropdown-item" href="#!">Manga</a></li>
                             </ul>
                         </li>
+                         <li class="nav-item dropdown">
+                          <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Admin</a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" asp-area="" asp-controller="Urun" asp-action="Index">Urun</a></li> @*ürün controllerın index.cshtml sine gidecek*@
+                                <li><a class="dropdown-item" asp-area="" asp-controller="Kategori" asp-action="Index">Kategori</a></li>
+                                <li><a class="dropdown-item" asp-area="" asp-controller="Fotograf" asp-action="Index">Fotoğraf</a></li>
+                                <li><a class="dropdown-item" asp-area="" asp-controller="IndirimliUrunler" asp-action="Index">İndirimli Ürünler</a></li>
+                                <li><a class="dropdown-item" asp-area="" asp-controller="Kampanya" asp-action="Index">Kampanya</a></li>
+                                <li><a class="dropdown-item" asp-area="" asp-controller="Siparis" asp-action="Index">Sipariş</a></li>
+                                <li><a class="dropdown-item" asp-area="" asp-controller="SiparisDetay" asp-action="Index">Siparis Detay</a></li>
+                                <li><a class="dropdown-item" asp-area="" asp-controller="TumUrunler" asp-action="Index">Tüm Ürünler</a></li>
+                                
+                            </ul>
+                        </li>
+                         
                     </ul>
                     
                     <form class="d-flex">
@@ -36,20 +50,9 @@
                             <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
                         </button>
                     </form>
-                    <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Admin</a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="#!">Tüm Ürünler</a></li>
-                                <li><a class="dropdown-item" asp-area="" asp-controller="Urun" asp-action="Index">Urun</a></li>
-                                <li><a class="dropdown-item" asp-area="" asp-controller="Kategori" asp-action="Index">Kategori</a></li>
-                                <li><a class="dropdown-item" asp-area="" asp-controller="Fotograf" asp-action="Index">Fotoğraf</a></li>
-                                <li><a class="dropdown-item" asp-area="" asp-controller="IndirimliUrunler" asp-action="Index">İndirimli Ürünler</a></li>
-                                <li><a class="dropdown-item" asp-area="" asp-controller="Kampanya" asp-action="Index">Kampanya</a></li>
-                                <li><a class="dropdown-item" asp-area="" asp-controller="Siparis" asp-action="Index">Sipariş</a></li>
-                                <li><a class="dropdown-item" asp-area="" asp-controller="SiparisDetay" asp-action="Index">Siparis Detay</a></li>
-                                
-                            </ul>
-                        </li>
+                    
+                         
+                        
                 </div>
             </div>
         </nav>
