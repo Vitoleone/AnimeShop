@@ -18,6 +18,7 @@ namespace AnimeShop.Models
         [ForeignKey("KategoriId")]
         public Kategori Kategori { get; set; }
         public ICollection<Fotograf> Fotograf { get; set; }
+        
     }
 }
 

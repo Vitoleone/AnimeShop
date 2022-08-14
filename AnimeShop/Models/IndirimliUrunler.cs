@@ -12,7 +12,7 @@ namespace AnimeShop.Models
         public int? UrunId { get; set; }
         [ForeignKey("UrunId")]
         public Urun Urun { get; set; }
-        public double Oran { get; set; }
+        public double Oran { get; set; } = 0;
         public DateTime Baslangic { get; set; }
         public DateTime Bitis { get; set; }//indirimin olacağı tarih aralığı
         public bool DigerKampanya { get; set; } = true; //ekstra olacak bir kampanya da olursa o da işlensin mi?

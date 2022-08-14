@@ -1,6 +1,7 @@
 ﻿using AnimeShop.Data;
 using AnimeShop.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -21,7 +22,10 @@ namespace AnimeShop.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            var db = _context.Urun//veritabanından urun tablosu çekilir. Foreign keyimiz olan kategoriID de dolu gelsin diye onu da yazdık.
+                .Include(u => u.Kategori);
+                
+            return View(db.ToList());//Çektiğimiz verileri HomeController ın index.cshtml(views de) sine model olarak gönderiyoruz.
         }
 
         public IActionResult Privacy()
