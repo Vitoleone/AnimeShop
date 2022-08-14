@@ -79,7 +79,7 @@ namespace AnimeShop.Controllers
                 {
                     files[0].CopyTo(fileStream);
                 }
-                fotograf.ResimAd = @"/images" + fileName + extension;
+                fotograf.ResimAd = @"/images" + "/" + fileName + extension;
 
                 //***************
                 _context.Add(fotograf);

@@ -14,6 +14,7 @@
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.ResimAd)
+                
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Urun)
@@ -25,7 +26,8 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.ResimAd)
+                *@Html.DisplayFor(modelItem => item.ResimAd)*
+                <img src="@Url.Content(item.ResimAd)" class="d-block w-100" asp-append-version = "true">
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Urun.Id)
