@@ -7,22 +7,26 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using AnimeShop.Data;
 using AnimeShop.Models;
+using Microsoft.AspNetCore.Hosting;
+using System.IO;
 
 namespace AnimeShop.Controllers
 {
     public class FotografController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly IWebHostEnvironment _hostingEnviroment;
 
-        public FotografController(ApplicationDbContext context)
+        public FotografController(ApplicationDbContext context, IWebHostEnvironment hostingEnviroment)
         {
             _context = context;
+            _hostingEnviroment = hostingEnviroment;
         }
 
         // GET: Fotograf
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Fotograf.Include(f => f.UrunIsmi);
+            var applicationDbContext = _context.Fotograf.Include(f => f.Urun);
             return View(await applicationDbContext.ToListAsync());
         }
 
@@ -35,7 +39,7 @@ namespace AnimeShop.Controllers
             }
 
             var fotograf = await _context.Fotograf
-                .Include(f => f.UrunIsmi)
+                .Include(f => f.Urun)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (fotograf == null)
             {
@@ -48,7 +52,7 @@ namespace AnimeShop.Controllers
         // GET: Fotograf/Create
         public IActionResult Create()
         {
-            ViewData["UrunId"] = new SelectList(_context.Fotograf, "Id", "Id");
+            ViewData["UrunId"] = new SelectList(_context.Urun, "Id", "Ad");
             return View();
         }
 
@@ -61,11 +65,28 @@ namespace AnimeShop.Controllers
         {
             if (ModelState.IsValid)
             {
+                //WebHostEnvironment
+
+                string webRootPath = _hostingEnviroment.WebRootPath;
+                var files = HttpContext.Request.Form.Files;
+
+
+                string fileName = Guid.NewGuid().ToString();
+                var uploads = Path.Combine(webRootPath, @"images");
+                var extension = Path.GetExtension(files[0].FileName);//yüklenen resim dosyasının uzantısı
+
+                using (var fileStream = new FileStream(Path.Combine(uploads, fileName + extension), FileMode.Create))
+                {
+                    files[0].CopyTo(fileStream);
+                }
+                fotograf.ResimAd = @"/images" + fileName + extension;
+
+                //***************
                 _context.Add(fotograf);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["UrunId"] = new SelectList(_context.Fotograf, "Id", "Id", fotograf.UrunId);
+            ViewData["UrunId"] = new SelectList(_context.Urun, "Id", "Ad", fotograf.UrunId);
             return View(fotograf);
         }
 
@@ -82,7 +103,7 @@ namespace AnimeShop.Controllers
             {
                 return NotFound();
             }
-            ViewData["UrunId"] = new SelectList(_context.Fotograf, "Id", "Id", fotograf.UrunId);
+            ViewData["UrunId"] = new SelectList(_context.Urun, "Id", "Ad", fotograf.UrunId);
             return View(fotograf);
         }
 
@@ -118,7 +139,7 @@ namespace AnimeShop.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["UrunId"] = new SelectList(_context.Fotograf, "Id", "Id", fotograf.UrunId);
+            ViewData["UrunId"] = new SelectList(_context.Urun, "Id", "Ad", fotograf.UrunId);
             return View(fotograf);
         }
 
@@ -131,7 +152,7 @@ namespace AnimeShop.Controllers
             }
 
             var fotograf = await _context.Fotograf
-                .Include(f => f.UrunIsmi)
+                .Include(f => f.Urun)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (fotograf == null)
             {

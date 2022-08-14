@@ -11,6 +11,6 @@ namespace AnimeShop.Models
         public string ResimAd { get; set; }
         public int? UrunId { get; set; }
         [ForeignKey("UrunId")]
-        public Fotograf UrunIsmi { get; set; }
+        public Urun Urun { get; set; }
     }
 }
