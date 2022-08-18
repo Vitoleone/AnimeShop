@@ -93,6 +93,7 @@ namespace AnimeShop.Controllers
         // GET: Fotograf/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
+
             if (id == null)
             {
                 return NotFound();
@@ -121,6 +122,23 @@ namespace AnimeShop.Controllers
 
             if (ModelState.IsValid)
             {
+                //WebHostEnvironment
+
+                string webRootPath = _hostingEnviroment.WebRootPath;
+                var files = HttpContext.Request.Form.Files;
+
+
+                string fileName = Guid.NewGuid().ToString();
+                var uploads = Path.Combine(webRootPath, @"images");
+                var extension = Path.GetExtension(files[0].FileName);//yüklenen resim dosyasının uzantısı
+
+                using (var fileStream = new FileStream(Path.Combine(uploads, fileName + extension), FileMode.Create))
+                {
+                    files[0].CopyTo(fileStream);
+                }
+                fotograf.ResimAd = @"/images" + "/" + fileName + extension;
+
+                //***************
                 try
                 {
                     _context.Update(fotograf);

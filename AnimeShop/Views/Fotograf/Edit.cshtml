@@ -12,16 +12,16 @@
     <div class="col-md-4">
         <form asp-action="Edit" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Id" />
+            <input type="hidden" asp-for="ResimAd" />
             <div class="form-group">
                 <label asp-for="ResimAd" class="control-label"></label>
                 <input type="file" name="files" class="form-control" />
                 <span asp-validation-for="ResimAd" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Urun.Ad" class="control-label"></label>
-                <select asp-for="Urun.Ad" class="form-control" asp-items="ViewBag.UrunId"></select>
-                <span asp-validation-for="Urun.Ad" class="text-danger"></span>
+                <label asp-for="UrunId" class="control-label"></label>
+                <select asp-for="UrunId" class="form-control" asp-items="ViewBag.UrunId"></select>
+                <span asp-validation-for="UrunId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
