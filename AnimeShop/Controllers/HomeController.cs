@@ -22,10 +22,23 @@ namespace AnimeShop.Controllers
 
         public IActionResult Index()
         {
-            var db = _context.Urun//veritabanından urun tablosu çekilir. Foreign keyimiz olan kategoriID de dolu gelsin diye onu da yazdık.
-                .Include(u => u.Kategori);
-                
-            return View(db.ToList());//Çektiğimiz verileri HomeController ın index.cshtml(views de) sine model olarak gönderiyoruz.
+            var urunList = (from u in _context.Urun
+                            join k in _context.Kategori on u.KategoriId equals k.Id
+                            join f in _context.Fotograf on u.Id equals f.UrunId
+                            join i in _context.IndirimliUrunler on u.Id equals i.UrunId
+                            select new UrunDTO
+                            {
+                                UrunId = u.Id,
+                                UrunAdi = u.Ad,
+                                UrunFiyat = u.Fiyat,
+                                UrunFotograf = f.ResimAd,
+                                UrunMiktar = u.Miktar,
+                                UrunKategori = k.Ad,
+                                UrunIndirimOrani = i.Oran
+
+
+                            }).ToList();
+            return View(urunList);
         }
 
         public IActionResult Privacy()
