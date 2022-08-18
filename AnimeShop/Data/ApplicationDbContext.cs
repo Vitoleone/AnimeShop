@@ -20,5 +20,6 @@ namespace AnimeShop.Data
         public DbSet<Siparis> Siparis { get; set; }
         public DbSet<SiparisDetay> SiparisDetay { get; set; }
         public DbSet<Urun> Urun { get; set; }
+        public DbSet<AnimeShop.Models.Sepet> Sepet { get; set; }
     }
 }
