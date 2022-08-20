@@ -19,12 +19,17 @@
     <tbody>
         @foreach(var item in Model)
         {
-            <tr>
+            if(@item.ApplicationUser.UserName == @User.Identity.Name)
+            {
+                <tr>
+                
                 <td>@item.Urun.Ad</td>
                 <td>@item.Fiyat</td>
                 <td>@item.Miktar</td>
                 <td>@item.Ucret</td>
-            </tr>
+                </tr>
+            }
+          
         }
         
     </tbody>
