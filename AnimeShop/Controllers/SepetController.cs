@@ -1,12 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Data;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using AnimeShop.Data;
 using AnimeShop.Models;
+using System.Web;
+using Microsoft.AspNetCore.Identity;
+
 
 namespace AnimeShop.Controllers
 {
@@ -24,6 +28,40 @@ namespace AnimeShop.Controllers
         {
             var applicationDbContext = _context.Sepet.Include(s => s.ApplicationUser).Include(s => s.Urun);
             return View(await applicationDbContext.ToListAsync());
+        }
+        [Route("/Sepet/SepetEkle/{id}")]
+        public async Task<IActionResult> SepeteEkle(int id)
+        {
+            if(User.Identity.IsAuthenticated)
+            {
+                var kullaniciAdi = User.Identity.Name;
+                var model = _context.Users.FirstOrDefault(x=>x.UserName == kullaniciAdi);
+                var u = _context.Urun.Find(id);
+                var sepet = _context.Sepet.FirstOrDefault(x => x.ApplicationUser.UserName == model.Email && x.UrunId == id);
+                if (model != null)
+                {
+                    if(sepet!=null)
+                    {
+                        sepet.Miktar++;
+                        sepet.Fiyat = u.Fiyat;
+                        _context.SaveChanges();
+                        return RedirectToAction("Index");
+                    }
+                    var s = new Sepet
+                    {
+                        MusteriId = model.Id,
+                        UrunId = u.Id,
+                        Miktar = 1,
+                        Fiyat = u.Fiyat
+                        
+                    };
+                    _context.Entry(s).State = EntityState.Added;
+                    _context.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+            }
+
+            return RedirectToAction("Index");
         }
 
         // GET: Sepet/Details/5
