@@ -3,6 +3,7 @@
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    
 }
 
 <h2 class="container">@User.Identity.Name</h2>
@@ -10,13 +11,16 @@
 <table class="table table-bordered">
     <thead>
         <tr>
-            <td>Ürün İsmi</td>
-            <td>Fiyatı</td>
-            <td>Miktarı</td>
-            <td>Toplam Fiyat</td>
+            <td class="fw-bold">Ürün İsmi</td>
+            <td class="fw-bold">Fiyatı</td>
+            <td class="fw-bold">Miktarı</td>
+            <td class="fw-bold">Toplam Fiyat</td>
         </tr>
     </thead>
     <tbody>
+        @{
+            double toplam = 0;
+        }
         @foreach(var item in Model)
         {
             if(@item.ApplicationUser.UserName == @User.Identity.Name)
@@ -24,13 +28,19 @@
                 <tr>
                 
                 <td>@item.Urun.Ad</td>
-                <td>@item.Fiyat</td>
+                <td>@item.Fiyat TL</td>
                 <td>@item.Miktar</td>
-                <td>@item.Ucret</td>
+                <td>@item.Ucret TL</td>
+                    @{
+                        toplam += @item.Ucret;
+                    }
                 </tr>
             }
           
         }
+        <tr>
+            <td>Toplam Tutar : @toplam TL</td>
+        </tr>
         
     </tbody>
 
