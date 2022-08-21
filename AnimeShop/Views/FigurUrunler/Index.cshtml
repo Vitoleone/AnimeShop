@@ -18,7 +18,8 @@
                              }
                            
                             <!-- Product image-->
-                            <img src="@Url.Content(item.UrunFotograf)" class="d-block w-100 h-100">
+                             <!-- Product image-->
+                            <a class="btn mt-auto" asp-controller="UrunDetay" asp-route-id="@item.UrunId" asp-action="UrunDetay"><img src="@Url.Content(item.UrunFotograf)" class="d-block w-100 h-100"></a>
                             <!-- Product details-->
                             <div class="card-body p-4">
                                 <div class="text-center">
