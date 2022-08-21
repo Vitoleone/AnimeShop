@@ -56,6 +56,7 @@ namespace AnimeShop.Controllers
                 return Math.Round(UrunFiyat,2);
             }
         }
+        public string UrunAciklamasi { get; set; }
         public bool UrunSatisDurumu { get; set; } = true;
     }
 }

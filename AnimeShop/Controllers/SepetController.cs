@@ -61,7 +61,7 @@ namespace AnimeShop.Controllers
                 }
             }
 
-            return RedirectToAction("Index");
+            return NotFound();
         }
 
         // GET: Sepet/Details/5
