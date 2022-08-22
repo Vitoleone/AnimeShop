@@ -23,7 +23,7 @@
             List<AnimeShop.Controllers.UrunDTO> item = Model.ToList();
         }
         <!-- Product section-->
-        @for(int i = 0; i < Model.ToList().Count-1;i++)
+        @for(int i = 0; i < 1;i++)
         {
           <section class="py-5">
             <div class="container px-4 px-lg-5 my-5">
@@ -41,12 +41,16 @@
                         </div>
                         <p class="lead">@item[i].UrunAciklamasi</p>
                                                     <!-- Product actions-->
-                            @if(User.Identity.IsAuthenticated == true)
+                            @if(User.Identity.IsAuthenticated == true && @item[i].UrunMiktar > 0)
                             {
                                 <form class="card-footer text-center p-4 pt-0 border-top-0 bg-transparent" asp-area="" asp-controller="Sepet" asp-action="SepeteEkle" asp-route-id="@item[i].UrunId"  method="post">
                                 <button class="btn btn-outline-dark mt-auto" type="submit">Sepete Ekle</button>
                                 
                                 </form>
+                            }
+                              else
+                            {
+                                 <div class="card-footer text-center p-4 pt-0 border-top-0 bg-danger text-white">Stokta yok</div>
                             }
                     </div>
                 </div>

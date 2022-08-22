@@ -20,7 +20,7 @@
 		            <div class="col-x1-3 col-lg-3 col-md-6 mb-4">
                         <div class="card h-100">
                              <!-- Sale badge-->
-                             @if(item.UrunSatisDurumu == true)
+                             @if(item.UrunMiktar > 0)
                              {
                                   <div class="badge bg-success text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Stokta var</div>
                              }
@@ -53,14 +53,18 @@
                             </div>
                             
                               <!-- Product actions-->
-                            @if(User.Identity.IsAuthenticated == true)
+                            @if(User.Identity.IsAuthenticated == true && @item.UrunMiktar > 0)
                             {
                                 <form class="card-footer text-center p-4 pt-0 border-top-0 bg-transparent" asp-area="" asp-controller="Sepet" asp-action="SepeteEkle" asp-route-id="@item.UrunId"  method="post">
                                 <button class="btn btn-outline-dark mt-auto" type="submit">Sepete Ekle</button>
                                 
                                 </form>
                             }
-                            
+                            else
+                            {
+                                 <div class="card-footer text-center p-4 pt-0 border-top-0 bg-danger text-white">Stokta yok</div>
+                            }
+
                         </div>
                     </div>
                   

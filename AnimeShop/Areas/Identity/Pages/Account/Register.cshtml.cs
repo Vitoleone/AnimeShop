@@ -46,20 +46,20 @@ namespace AnimeShop.Areas.Identity.Pages.Account
 
         public class InputModel
         {
-            [Required]
+            
             public string Ad { get; set; }
-            [Required]
+            
             public string Soyad { get; set; }
             public string Adres { get; set; }
-            [Required]
+            
             [DataType(DataType.PhoneNumber)]
             public string Telefon { get; set; }
-            [Required]
+            
             [DataType(DataType.Date)]
             public DateTime DogumTarihi { get; set; }
-            [Required]
+            
             public Cinsiyet Cinsiyet { get; set; }
-            [Required]
+            
             public string Sehir { get; set; }
 
             [Required]
@@ -91,7 +91,7 @@ namespace AnimeShop.Areas.Identity.Pages.Account
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = Input.Ad, Email = Input.Email };
+                var user = new ApplicationUser { UserName = Input.Email, Email = Input.Email };
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {

@@ -7,16 +7,19 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using AnimeShop.Data;
 using AnimeShop.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace AnimeShop.Controllers
 {
     public class RoleController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly RoleManager<IdentityRole> _roleManager;
 
-        public RoleController(ApplicationDbContext context)
+        public RoleController(ApplicationDbContext context, RoleManager<IdentityRole> roleManager)
         {
             _context = context;
+            _roleManager = roleManager;
         }
 
         // GET: Role
@@ -58,6 +61,19 @@ namespace AnimeShop.Controllers
         {
             if (ModelState.IsValid)
             {
+                IdentityRole identityRole = new IdentityRole
+                {
+                    Name = role.RoleName
+                };
+                IdentityResult result = await _roleManager.CreateAsync(identityRole);
+                if(result.Succeeded)
+                {
+                    return RedirectToAction("index", "home");
+                }
+                foreach(IdentityError error in result.Errors)
+                {
+                    ModelState.AddModelError(string.Empty, error.Description);
+                }
                 _context.Add(role);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
