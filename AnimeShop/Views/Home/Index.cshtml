@@ -1,6 +1,9 @@
 ﻿@model IEnumerable<AnimeShop.Controllers.UrunDTO>
+
+@using AnimeShop.Controllers;
 @{
     ViewData["Title"] = "Home Page";
+    
 }
 
 <section class="py-5">
@@ -52,7 +55,7 @@
                               <!-- Product actions-->
                             @if(User.Identity.IsAuthenticated == true)
                             {
-                                <form class="card-footer p-4 pt-0 border-top-0 bg-transparent" asp-area="" asp-controller="Sepet" asp-action="SepeteEkle" asp-route-id="@item.UrunId"  method="post">
+                                <form class="card-footer text-center p-4 pt-0 border-top-0 bg-transparent" asp-area="" asp-controller="Sepet" asp-action="SepeteEkle" asp-route-id="@item.UrunId"  method="post">
                                 <button class="btn btn-outline-dark mt-auto" type="submit">Sepete Ekle</button>
                                 
                                 </form>

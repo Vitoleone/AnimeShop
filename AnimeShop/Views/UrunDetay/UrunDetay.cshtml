@@ -40,13 +40,14 @@
                             <span>@item[i].UrunIndirimliFiyat TL</span>
                         </div>
                         <p class="lead">@item[i].UrunAciklamasi</p>
-                        <div class="d-flex">
-                            <input class="form-control text-center me-3" id="inputQuantity" type="num" value="1" style="max-width: 3rem" />
-                            <button class="btn btn-outline-dark flex-shrink-0" type="button">
-                                <i class="bi-cart-fill me-1"></i>
-                                Sepete Ekle
-                            </button>
-                        </div>
+                                                    <!-- Product actions-->
+                            @if(User.Identity.IsAuthenticated == true)
+                            {
+                                <form class="card-footer text-center p-4 pt-0 border-top-0 bg-transparent" asp-area="" asp-controller="Sepet" asp-action="SepeteEkle" asp-route-id="@item[i].UrunId"  method="post">
+                                <button class="btn btn-outline-dark mt-auto" type="submit">Sepete Ekle</button>
+                                
+                                </form>
+                            }
                     </div>
                 </div>
             </div>
@@ -159,10 +160,6 @@
                 </div>
             </div>
         </section>
-        <!-- Footer-->
-        <footer class="py-5 bg-dark">
-            <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2022</p></div>
-        </footer>
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
