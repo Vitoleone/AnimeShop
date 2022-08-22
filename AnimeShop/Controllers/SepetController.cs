@@ -39,12 +39,13 @@ namespace AnimeShop.Controllers
                 var model = _context.Users.FirstOrDefault(x=>x.UserName == kullaniciAdi);
                 var u = _context.Urun.Find(id);
                 var sepet = _context.Sepet.FirstOrDefault(x => x.ApplicationUser.UserName == model.Email && x.UrunId == id);
+                var i = _context.IndirimliUrunler.Find(id);
                 if (model != null)
                 {
                     if(sepet!=null)
                     {
                         sepet.Miktar++;
-                        sepet.Fiyat = u.Fiyat;
+                        sepet.Fiyat = Math.Round(u.Fiyat - (u.Fiyat * i.Oran) / 100,2);
                         _context.SaveChanges();
                         return RedirectToAction("Index");
                     }
@@ -53,9 +54,10 @@ namespace AnimeShop.Controllers
                         MusteriId = model.Id,
                         UrunId = u.Id,
                         Miktar = 1,
-                        Fiyat = u.Fiyat
-                        
-                    };
+                        Fiyat = Math.Round(u.Fiyat - (u.Fiyat * i.Oran) / 100, 2),
+
+
+                };
                     
                     
                     _context.Entry(s).State = EntityState.Added;
@@ -72,19 +74,20 @@ namespace AnimeShop.Controllers
             var model = _context.Users.FirstOrDefault(x => x.UserName == kullaniciAdi);
             var u = _context.Urun.Find(id);
             var sepet = _context.Sepet.FirstOrDefault(x => x.ApplicationUser.UserName == model.Email && x.UrunId == id);
+            var i = _context.IndirimliUrunler.Find(id);
             if (model != null)
             {
                 if (sepet != null && sepet.Miktar > 0)
                 {
                     sepet.Miktar--;
-                    sepet.Fiyat = u.Fiyat;
+                    sepet.Fiyat = Math.Round(u.Fiyat - (u.Fiyat * i.Oran) / 100, 2);
                     _context.SaveChanges();
                     return RedirectToAction("Index");
                 }
                 else
                 {
                     sepet.Miktar = 0;
-                    sepet.Fiyat = u.Fiyat;
+                    sepet.Fiyat = Math.Round(u.Fiyat - (u.Fiyat * i.Oran) / 100,2);
                     _context.SaveChanges();
                     return RedirectToAction("Index");
                 }
@@ -93,9 +96,9 @@ namespace AnimeShop.Controllers
                     MusteriId = model.Id,
                     UrunId = u.Id,
                     Miktar = 1,
-                    Fiyat = -u.Fiyat
+                    Fiyat = -Math.Round(u.Fiyat - (u.Fiyat * i.Oran) / 100, 2),
 
-                };
+            };
 
 
                 _context.Entry(s).State = EntityState.Deleted;
