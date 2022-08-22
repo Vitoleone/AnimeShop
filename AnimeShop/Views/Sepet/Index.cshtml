@@ -28,7 +28,7 @@
         }
         @foreach(var item in Model)
         {
-            if(@item.ApplicationUser.UserName == @User.Identity.Name && @item.Miktar > 0)
+            if( @item.ApplicationUser.UserName == @User.Identity.Name && @item.Miktar > 0)
             {
                 urunVarMi = true;
                 <tr>
