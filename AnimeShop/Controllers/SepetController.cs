@@ -17,6 +17,7 @@ namespace AnimeShop.Controllers
     public class SepetController : Controller
     {
         private readonly ApplicationDbContext _context;
+        
 
         public SepetController(ApplicationDbContext context)
         {
@@ -55,12 +56,52 @@ namespace AnimeShop.Controllers
                         Fiyat = u.Fiyat
                         
                     };
+                    
+                    
                     _context.Entry(s).State = EntityState.Added;
                     _context.SaveChanges();
                     return RedirectToAction("Index");
                 }
             }
 
+            return NotFound();
+        }
+        public async Task<IActionResult> SepettenKaldir(int id)
+        {
+            var kullaniciAdi = User.Identity.Name;
+            var model = _context.Users.FirstOrDefault(x => x.UserName == kullaniciAdi);
+            var u = _context.Urun.Find(id);
+            var sepet = _context.Sepet.FirstOrDefault(x => x.ApplicationUser.UserName == model.Email && x.UrunId == id);
+            if (model != null)
+            {
+                if (sepet != null && sepet.Miktar > 0)
+                {
+                    sepet.Miktar--;
+                    sepet.Fiyat = u.Fiyat;
+                    _context.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    sepet.Miktar = 0;
+                    sepet.Fiyat = u.Fiyat;
+                    _context.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                var s = new Sepet
+                {
+                    MusteriId = model.Id,
+                    UrunId = u.Id,
+                    Miktar = 1,
+                    Fiyat = -u.Fiyat
+
+                };
+
+
+                _context.Entry(s).State = EntityState.Deleted;
+                _context.SaveChanges();
+                return RedirectToAction("Index");
+            }
             return NotFound();
         }
 

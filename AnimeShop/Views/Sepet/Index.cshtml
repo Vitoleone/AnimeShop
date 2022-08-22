@@ -2,44 +2,71 @@
 
 @{
     ViewData["Title"] = "Index";
-    
-    
+    bool urunVarMi = false;
+
 }
 
-<h2 class="container">@User.Identity.Name</h2>
 <h3 class="container">Sepetim</h3>
+<hr class="border-2"/>
 <table class="table table-bordered">
     <thead>
-        <tr>
+        @if(urunVarMi == true)
+        {
+            <tr>
             <td class="fw-bold">Ürün İsmi</td>
             <td class="fw-bold">Fiyatı</td>
             <td class="fw-bold">Miktarı</td>
             <td class="fw-bold">Toplam Fiyat</td>
-        </tr>
+            </tr>
+        }
+        
     </thead>
     <tbody>
         @{
             double toplam = 0;
+            double UrunSayisi = 0;
+            
         }
         @foreach(var item in Model)
         {
-            if(@item.ApplicationUser.UserName == @User.Identity.Name)
+            if(@item.ApplicationUser.UserName == @User.Identity.Name && @item.Miktar > 0)
             {
+                urunVarMi = true;
                 <tr>
                 
                 <td>@item.Urun.Ad</td>
                 <td>@item.Fiyat TL</td>
                 <td>@item.Miktar</td>
                 <td>@item.Ucret TL</td>
+                <td>    @if(User.Identity.IsAuthenticated == true)
+                            {
+                                <form class="card-footer text-center p-4 pt-0 border-top-0 bg-transparent" asp-area="" asp-controller="Sepet" asp-action="SepettenKaldir" asp-route-id="@item.UrunId"  method="post">
+                                <button class="btn btn-danger btn-outline-dark mt-auto" type="submit">X</button>
+                                
+                                </form>
+                            }</td>
                     @{
                         toplam += @item.Ucret;
+                        UrunSayisi += @item.Miktar;
                     }
                 </tr>
             }
           
         }
         <tr>
+            @if(@toplam <= 0)
+            {
+                urunVarMi = false;
+                <p class="fw-bold">Sepetiniz Boş.</p>
+            }
+            else
+            {
+            <td></td>
+            <td></td>
+            <td>Toplam Urun Miktarı: @UrunSayisi</td>
             <td>Toplam Tutar : @toplam TL</td>
+            }
+            
         </tr>
         
     </tbody>
