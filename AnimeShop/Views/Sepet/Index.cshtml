@@ -5,17 +5,18 @@
     bool urunVarMi = false;
 
 }
+@inject LanguageService language
 
-<h3 class="container">Sepetim</h3>
+<h3 class="container">@language.Getkey("Sepetim")</h3>
 <hr class="border-2"/>
 <table class="table table-bordered">
     <thead>
        
             <tr>
-            <td class="fw-bold">Ürün İsmi</td>
-            <td class="fw-bold">Fiyatı</td>
-            <td class="fw-bold">Miktarı</td>
-            <td class="fw-bold">Toplam Fiyat</td>
+            <td class="fw-bold">@language.Getkey("UrunIsmi")</td>
+            <td class="fw-bold">@language.Getkey("UrunFiyati")</td>
+            <td class="fw-bold">@language.Getkey("UrunMiktari")</td>
+            <td class="fw-bold">@language.Getkey("ToplamFiyat")</td>
             </tr>
         
         
@@ -56,14 +57,14 @@
             @if(@toplam <= 0)
             {
                 urunVarMi = false;
-                <p class="fw-bold">Sepetiniz Boş.</p>
+                <p class="fw-bold">@language.Getkey("Sepet_Bos")</p>
             }
             else
             {
             <td></td>
             <td></td>
-            <td>Toplam Urun Miktarı: @UrunSayisi</td>
-            <td>Toplam Tutar : @toplam TL</td>
+            <td>@language.Getkey("ToplamFiyat") @language.Getkey("UrunMiktari")  @UrunSayisi</td>
+            <td>@language.Getkey("ToplamFiyat") @language.Getkey("UrunFiyati") : @toplam TL</td>
             }
             
         </tr>

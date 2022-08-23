@@ -117,7 +117,61 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Message" xml:space="preserve">
-    <value>Your contact page.</value>
+  <data name="CikisYap" xml:space="preserve">
+    <value>Çıkış Yap</value>
+  </data>
+  <data name="Figur" xml:space="preserve">
+    <value>Figür</value>
+  </data>
+  <data name="GirisYap" xml:space="preserve">
+    <value>Giriş Yap</value>
+  </data>
+  <data name="Header_Aciklama" xml:space="preserve">
+    <value>Anime hakkında her ürün.</value>
+  </data>
+  <data name="Hosgeldin" xml:space="preserve">
+    <value>Hoş geldin,</value>
+  </data>
+  <data name="Ingilizce" xml:space="preserve">
+    <value>İngilizce</value>
+  </data>
+  <data name="KayitOl" xml:space="preserve">
+    <value>Kayıt Ol</value>
+  </data>
+  <data name="Sepet" xml:space="preserve">
+    <value>Sepet</value>
+  </data>
+  <data name="Sepetim" xml:space="preserve">
+    <value>Sepetim</value>
+  </data>
+  <data name="Sepet_Bos" xml:space="preserve">
+    <value>Sepetiniz boş.</value>
+  </data>
+  <data name="Sepet_Ekle" xml:space="preserve">
+    <value>Sepete Ekle</value>
+  </data>
+  <data name="StoktaVar" xml:space="preserve">
+    <value>Stokta var</value>
+  </data>
+  <data name="StokTaYok" xml:space="preserve">
+    <value>Stokta yok</value>
+  </data>
+  <data name="ToplamFiyat" xml:space="preserve">
+    <value>Toplam</value>
+  </data>
+  <data name="Tum_urunler" xml:space="preserve">
+    <value>Tüm Ürünler</value>
+  </data>
+  <data name="Turkce" xml:space="preserve">
+    <value>Türkçe</value>
+  </data>
+  <data name="UrunFiyati" xml:space="preserve">
+    <value>Fiyat</value>
+  </data>
+  <data name="UrunIsmi" xml:space="preserve">
+    <value>Ürün ismi</value>
+  </data>
+  <data name="UrunMiktari" xml:space="preserve">
+    <value>Miktar</value>
   </data>
 </root>

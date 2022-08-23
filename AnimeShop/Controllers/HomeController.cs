@@ -1,5 +1,7 @@
 ﻿using AnimeShop.Data;
 using AnimeShop.Models;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
@@ -39,6 +41,14 @@ namespace AnimeShop.Controllers
 
                             }).ToList();
             return View(urunList);
+        }
+        public IActionResult ChangeLanguage(string culture)
+        {
+            Response.Cookies.Append(CookieRequestCultureProvider.DefaultCookieName,
+                CookieRequestCultureProvider.MakeCookieValue(new RequestCulture(culture)),
+                new CookieOptions() { Expires = DateTimeOffset.UtcNow.AddYears(1) });
+
+            return Redirect(Request.Headers["Referer"].ToString());
         }
 
         public IActionResult Privacy()

@@ -1,4 +1,5 @@
 ﻿@model IEnumerable<AnimeShop.Controllers.UrunDTO>
+@inject LanguageService language
 
 @using AnimeShop.Controllers;
 @{
@@ -22,11 +23,11 @@
                              <!-- Sale badge-->
                              @if(item.UrunMiktar > 0)
                              {
-                                  <div class="badge bg-success text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Stokta var</div>
+                                  <div class="badge bg-success text-white position-absolute" style="top: 0.5rem; right: 0.5rem">@language.Getkey("StoktaVar")</div>
                              }
                              else
                              {
-                                 <div class="badge bg-warning text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Stokta Yok</div>
+                                 <div class="badge bg-warning text-white position-absolute" style="top: 0.5rem; right: 0.5rem">@language.Getkey("StokTaYok")</div>
                              }
                            
                             <!-- Product image-->
@@ -56,13 +57,17 @@
                             @if(User.Identity.IsAuthenticated == true && @item.UrunMiktar > 0)
                             {
                                 <form class="card-footer text-center p-4 pt-0 border-top-0 bg-transparent" asp-area="" asp-controller="Sepet" asp-action="SepeteEkle" asp-route-id="@item.UrunId"  method="post">
-                                <button class="btn btn-outline-dark mt-auto" type="submit">Sepete Ekle</button>
+                                <button class="btn btn-outline-dark mt-auto" type="submit">@language.Getkey("Sepet_Ekle")</button>
                                 
                                 </form>
                             }
+                            else if(User.Identity.IsAuthenticated == true && @item.UrunMiktar <= 0)
+                            {
+                                 <div class="card-footer text-center p-4 pt-0 border-top-0 bg-danger text-white">@language.Getkey("StokTaYok")</div>
+                            }
                             else
                             {
-                                 <div class="card-footer text-center p-4 pt-0 border-top-0 bg-danger text-white">Stokta yok</div>
+                               
                             }
 
                         </div>
